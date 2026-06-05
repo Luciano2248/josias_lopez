@@ -19,12 +19,14 @@
       --accent-light: oklch(90%  0.055 48);
       --accent-dark:  oklch(36%  0.10  48);
       --border:       oklch(88%  0.012 75);
-      --dark-bg:      oklch(17%  0.012 75);
-      --dark-surface: oklch(22%  0.012 75);
-      --dark-hover:   oklch(26%  0.014 75);
-      --dark-line:    oklch(30%  0.010 75);
+      --dark-bg:      oklch(30%  0.014 75);
+      --dark-surface: oklch(36%  0.012 75);
+      --dark-hover:   oklch(40%  0.014 75);
+      --dark-line:    oklch(44%  0.010 75);
+      --dark-text:    oklch(92%  0.010 75);
+      --dark-muted:   oklch(70%  0.008 75);
       --shadow-sm:    0 1px 3px oklch(18% 0.012 75 / 0.08), 0 1px 2px oklch(18% 0.012 75 / 0.04);
-      --shadow-md:    0 4px 16px oklch(18% 0.012 75 / 0.10), 0 2px 6px  oklch(18% 0.012 75 / 0.06);
+      --shadow-md:    0 4px 16px oklch(18% 0.012 75 / 0.10), 0 2px 6px oklch(18% 0.012 75 / 0.06);
       --shadow-lg:    0 12px 40px oklch(18% 0.012 75 / 0.14), 0 4px 12px oklch(18% 0.012 75 / 0.08);
       --spring:       cubic-bezier(0.34, 1.56, 0.64, 1);
       --ease-out:     cubic-bezier(0.16, 1, 0.3, 1);
@@ -33,7 +35,6 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
 
     body {
@@ -65,7 +66,6 @@
       transition: box-shadow 0.4s var(--ease-out);
       white-space: nowrap;
     }
-
     .nav-logo {
       font-weight: 700;
       font-size: 0.875rem;
@@ -75,7 +75,6 @@
       margin-right: 6px;
     }
     .nav-logo em { font-style: normal; color: var(--accent); }
-
     nav a {
       text-decoration: none;
       font-size: 0.8125rem;
@@ -86,17 +85,8 @@
       transition: background 0.2s var(--ease-ios), color 0.2s var(--ease-ios);
     }
     nav a:hover { background: var(--bg-2); color: var(--text-1); }
-
-    .nav-cta {
-      background: var(--text-1) !important;
-      color: var(--bg) !important;
-      margin-left: 4px;
-    }
-    .nav-cta:hover {
-      background: var(--accent) !important;
-      color: oklch(99% 0.006 75) !important;
-      transform: scale(1.04);
-    }
+    .nav-cta { background: var(--text-1) !important; color: var(--bg) !important; margin-left: 4px; }
+    .nav-cta:hover { background: var(--accent) !important; color: oklch(99% 0.006 75) !important; transform: scale(1.04); }
 
     /* ─── REVEAL ─── */
     .reveal {
@@ -105,25 +95,23 @@
       transition: opacity 0.75s var(--ease-out), transform 0.75s var(--ease-out);
     }
     .reveal.in { opacity: 1; transform: none; }
-    .d1 { transition-delay: 0.10s; }
-    .d2 { transition-delay: 0.20s; }
-    .d3 { transition-delay: 0.30s; }
-    .d4 { transition-delay: 0.40s; }
-    .d5 { transition-delay: 0.50s; }
+    .d1 { transition-delay: 0.10s; } .d2 { transition-delay: 0.20s; }
+    .d3 { transition-delay: 0.30s; } .d4 { transition-delay: 0.40s; }
+    .d5 { transition-delay: 0.50s; } .d6 { transition-delay: 0.60s; }
 
     /* ─── HERO ─── */
     .hero {
       min-height: 100svh;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+      display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 56px;
-      padding: 130px 80px 80px;
-      max-width: 1380px;
+      justify-content: center;
+      text-align: center;
+      padding: 140px 40px 80px;
+      max-width: 860px;
       margin: 0 auto;
+      gap: 28px;
     }
-
-    .hero-text { display: flex; flex-direction: column; gap: 26px; }
 
     .hero-badge {
       display: inline-flex;
@@ -137,7 +125,6 @@
       letter-spacing: 0.07em;
       text-transform: uppercase;
       border-radius: 50px;
-      width: fit-content;
       opacity: 0;
       transform: translateY(18px);
       animation: fadeUp 0.8s var(--ease-out) 0.15s forwards;
@@ -155,21 +142,21 @@
     }
 
     .hero-title {
-      font-size: clamp(3.2rem, 6vw, 5.8rem);
+      font-size: clamp(4rem, 10vw, 8.5rem);
       font-weight: 800;
-      letter-spacing: -0.045em;
-      line-height: 0.92;
+      letter-spacing: -0.05em;
+      line-height: 0.9;
       opacity: 0;
-      transform: translateY(28px);
+      transform: translateY(30px);
       animation: fadeUp 0.9s var(--ease-out) 0.3s forwards;
     }
     .hero-title .accent-line { display: block; color: var(--accent); }
 
     .hero-sub {
-      font-size: 1.0625rem;
+      font-size: 1.125rem;
       color: var(--text-2);
       line-height: 1.7;
-      max-width: 44ch;
+      max-width: 52ch;
       opacity: 0;
       transform: translateY(20px);
       animation: fadeUp 0.9s var(--ease-out) 0.45s forwards;
@@ -178,10 +165,11 @@
     .hero-actions {
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 14px;
       opacity: 0;
       transform: translateY(18px);
-      animation: fadeUp 0.9s var(--ease-out) 0.60s forwards;
+      animation: fadeUp 0.9s var(--ease-out) 0.6s forwards;
     }
 
     .btn {
@@ -199,177 +187,47 @@
       cursor: pointer;
       transition: all 0.3s var(--spring);
     }
-    .btn-dark {
-      background: var(--text-1);
-      color: var(--bg);
+    .btn-dark { background: var(--text-1); color: var(--bg); }
+    .btn-dark:hover { background: var(--accent); transform: scale(1.05) translateY(-2px); box-shadow: 0 10px 32px oklch(52% 0.14 48 / 0.28); }
+    .btn-ghost { background: transparent; color: var(--text-2); border: 1.5px solid var(--border); }
+    .btn-ghost:hover { border-color: var(--text-2); color: var(--text-1); transform: translateY(-1px); }
+    .btn-wa {
+      background: #25D366;
+      color: #fff;
     }
-    .btn-dark:hover {
-      background: var(--accent);
-      transform: scale(1.05) translateY(-2px);
-      box-shadow: 0 10px 32px oklch(52% 0.14 48 / 0.28);
-    }
-    .btn-ghost {
-      background: transparent;
-      color: var(--text-2);
-      border: 1.5px solid var(--border);
-    }
-    .btn-ghost:hover {
-      border-color: var(--text-2);
-      color: var(--text-1);
-      transform: translateY(-1px);
-    }
+    .btn-wa:hover { background: #1da851; transform: scale(1.05) translateY(-2px); box-shadow: 0 10px 32px rgba(37,211,102,0.35); }
 
     .hero-stats {
       display: flex;
-      gap: 36px;
-      padding-top: 6px;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      padding-top: 8px;
       opacity: 0;
       transform: translateY(18px);
       animation: fadeUp 0.9s var(--ease-out) 0.75s forwards;
     }
+    .hero-stats-divider { width: 1px; height: 36px; background: var(--border); }
+    .stat-n { font-size: 2.25rem; font-weight: 800; letter-spacing: -0.05em; color: var(--text-1); line-height: 1; }
+    .stat-l { font-size: 0.7rem; font-weight: 500; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 5px; }
 
-    .stat-n {
-      font-size: 2rem;
-      font-weight: 800;
-      letter-spacing: -0.045em;
-      color: var(--text-1);
-      line-height: 1;
-    }
-    .stat-l {
-      font-size: 0.72rem;
-      font-weight: 500;
-      color: var(--text-3);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-top: 4px;
-    }
-
-    /* Hero visual */
-    .hero-visual {
-      position: relative;
-      display: flex;
-      justify-content: flex-end;
-      opacity: 0;
-      transform: translateX(36px) scale(0.97);
-      animation: heroIn 1s var(--ease-out) 0.25s forwards;
-    }
-    @keyframes heroIn {
-      to { opacity: 1; transform: none; }
-    }
-
-    .hero-img-wrap {
-      position: relative;
-      width: min(500px, 100%);
-      aspect-ratio: 3 / 4;
-      border-radius: var(--r-xl);
-      overflow: hidden;
-      box-shadow: var(--shadow-lg);
-    }
-    .hero-img-wrap img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      object-position: center top;
-      transition: transform 0.9s var(--ease-out);
-    }
-    .hero-img-wrap:hover img { transform: scale(1.04); }
-
-    .hero-img-overlay {
+    /* hero deco grid */
+    .hero-deco {
       position: absolute;
       inset: 0;
-      bottom: 0;
-      padding: 36px 28px 28px;
-      background: linear-gradient(to top, oklch(17% 0.012 75 / 0.85) 0%, transparent 55%);
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: -1;
     }
-    .hero-img-loc {
-      font-size: 0.8rem;
-      color: oklch(88% 0.01 75);
-      font-weight: 400;
-    }
-    .hero-exp-pill {
-      background: var(--accent);
-      color: oklch(99% 0.006 75);
-      padding: 9px 18px;
-      border-radius: 50px;
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-    }
+    .hero-deco svg { position: absolute; right: -60px; top: 50%; transform: translateY(-50%); opacity: 0.04; }
 
-    .float-card {
-      position: absolute;
-      left: -40px;
-      top: 38%;
-      transform: translateY(-50%);
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--r-md);
-      padding: 18px 22px;
-      box-shadow: var(--shadow-lg);
-      min-width: 170px;
-      animation: floatY 3.8s ease-in-out infinite;
-    }
-    @keyframes floatY {
-      0%, 100% { transform: translateY(-50%) translateY(0); }
-      50%       { transform: translateY(-50%) translateY(-9px); }
-    }
-    .float-card-eyebrow {
-      font-size: 0.67rem;
-      color: var(--text-3);
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      margin-bottom: 4px;
-    }
-    .float-card-val {
-      font-size: 1.5rem;
-      font-weight: 800;
-      color: var(--text-1);
-      letter-spacing: -0.04em;
-      line-height: 1;
-    }
-    .float-card-sub {
-      font-size: 0.75rem;
-      color: var(--accent);
-      font-weight: 600;
-      margin-top: 4px;
-    }
+    @keyframes fadeUp { to { opacity: 1; transform: none; } }
 
-    @keyframes fadeUp {
-      to { opacity: 1; transform: none; }
-    }
-
-    /* ─── SHARED SECTION ─── */
-    .section {
-      padding: 96px 80px;
-      max-width: 1380px;
-      margin: 0 auto;
-    }
-
-    .eyebrow {
-      font-size: 0.72rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--accent);
-      margin-bottom: 12px;
-    }
-    .section-title {
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 800;
-      letter-spacing: -0.04em;
-      line-height: 1.05;
-      max-width: 22ch;
-    }
-    .section-sub {
-      font-size: 1.0625rem;
-      color: var(--text-2);
-      line-height: 1.7;
-      max-width: 52ch;
-      margin-top: 14px;
-    }
+    /* ─── SHARED ─── */
+    .section { padding: 96px 80px; max-width: 1380px; margin: 0 auto; }
+    .eyebrow { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 12px; }
+    .section-title { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; letter-spacing: -0.04em; line-height: 1.05; max-width: 22ch; }
+    .section-sub { font-size: 1.0625rem; color: var(--text-2); line-height: 1.7; max-width: 52ch; margin-top: 14px; }
 
     /* ─── SERVICES ─── */
     .services-wrap {
@@ -378,8 +236,9 @@
       margin: 0 40px;
       padding: 80px;
     }
-    .services-wrap .eyebrow  { color: var(--accent); }
-    .services-wrap .section-title { color: oklch(96.5% 0.012 75); }
+    .services-wrap .eyebrow { color: var(--accent); }
+    .services-wrap .section-title { color: var(--dark-text); }
+    .services-wrap .section-sub { color: var(--dark-muted); }
 
     .services-list {
       margin-top: 52px;
@@ -387,106 +246,56 @@
       flex-direction: column;
       border-top: 1px solid var(--dark-line);
     }
-
     .svc-row {
       display: grid;
       grid-template-columns: 56px 1fr auto;
       gap: 32px;
       align-items: center;
-      padding: 32px 0;
+      padding: 30px 0;
       border-bottom: 1px solid var(--dark-line);
-      transition: background 0.25s var(--ease-ios);
+      transition: background 0.2s var(--ease-ios);
       cursor: default;
     }
-    .svc-row:hover { background: oklch(22% 0.012 75 / 0.5); }
-    .svc-row:hover .svc-icon { background: var(--accent); transform: scale(1.12) rotate(-6deg); }
-
-    .svc-num {
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: var(--dark-line);
-      letter-spacing: 0.04em;
-      align-self: flex-start;
-      padding-top: 4px;
-    }
-
+    .svc-row:hover { background: oklch(36% 0.012 75 / 0.5); border-radius: var(--r-sm); }
+    .svc-row:hover .svc-icon { background: var(--accent); color: oklch(99% 0.006 75); transform: scale(1.1) rotate(-5deg); }
+    .svc-num { font-size: 0.72rem; font-weight: 700; color: var(--dark-line); letter-spacing: 0.04em; align-self: flex-start; padding-top: 6px; }
     .svc-body { display: flex; flex-direction: column; gap: 10px; }
-
-    .svc-header {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
+    .svc-header { display: flex; align-items: center; gap: 16px; }
     .svc-icon {
       width: 44px; height: 44px;
       background: var(--dark-surface);
       border-radius: var(--r-sm);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.375rem;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--dark-text);
       flex-shrink: 0;
       transition: all 0.3s var(--spring);
     }
-    .svc-name {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: oklch(96.5% 0.012 75);
-      letter-spacing: -0.025em;
-    }
-    .svc-desc {
-      font-size: 0.875rem;
-      color: oklch(60% 0.008 75);
-      line-height: 1.65;
-      max-width: 54ch;
-    }
-
-    .svc-tags {
-      display: flex;
-      gap: 6px;
-      flex-wrap: nowrap;
-    }
-    .svc-tag {
-      font-size: 0.7rem;
-      font-weight: 600;
-      color: oklch(70% 0.008 75);
-      padding: 5px 12px;
-      border: 1px solid var(--dark-line);
-      border-radius: 50px;
-      white-space: nowrap;
-    }
+    .svc-icon svg { width: 20px; height: 20px; }
+    .svc-name { font-size: 1.075rem; font-weight: 700; color: var(--dark-text); letter-spacing: -0.025em; }
+    .svc-desc { font-size: 0.875rem; color: var(--dark-muted); line-height: 1.65; max-width: 56ch; }
+    .svc-tags { display: flex; gap: 6px; }
+    .svc-tag { font-size: 0.68rem; font-weight: 600; color: var(--dark-muted); padding: 5px 12px; border: 1px solid var(--dark-line); border-radius: 50px; white-space: nowrap; }
 
     /* ─── ABOUT ─── */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-    }
-
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
     .about-img-wrap {
       position: relative;
       border-radius: var(--r-xl);
       overflow: hidden;
-      aspect-ratio: 4 / 5;
+      aspect-ratio: 4/5;
       box-shadow: var(--shadow-lg);
     }
     .about-img-wrap img {
       width: 100%; height: 100%;
-      object-fit: cover;
-      object-position: center top;
+      object-fit: cover; object-position: center top;
       filter: grayscale(15%);
       transition: filter 0.5s ease, transform 0.8s var(--ease-out);
     }
     .about-img-wrap:hover img { filter: grayscale(0%); transform: scale(1.03); }
-
     .accent-block {
-      position: absolute;
-      bottom: 28px;
-      right: -20px;
+      position: absolute; bottom: 28px; right: -20px;
       width: 110px; height: 110px;
-      background: var(--accent);
-      border-radius: var(--r-md);
+      background: var(--accent); border-radius: var(--r-md);
       z-index: -1;
       animation: floatBlock 4.2s ease-in-out infinite;
     }
@@ -494,119 +303,71 @@
       0%, 100% { transform: rotate(12deg); }
       50%       { transform: rotate(12deg) translateY(-10px); }
     }
-
     .about-content { display: flex; flex-direction: column; gap: 24px; }
+    .about-p { font-size: 1.0625rem; color: var(--text-2); line-height: 1.78; }
+    .about-p strong { color: var(--text-1); font-weight: 600; }
+    .values-box { display: flex; flex-direction: column; gap: 14px; padding: 28px 32px; background: var(--bg-2); border-radius: var(--r-lg); }
+    .val-row { display: flex; align-items: center; gap: 14px; }
+    .val-icon {
+      width: 38px; height: 38px;
+      background: var(--accent-light); border-radius: var(--r-sm);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent-dark);
+      flex-shrink: 0;
+    }
+    .val-icon svg { width: 18px; height: 18px; }
+    .val-text { font-size: 0.9375rem; font-weight: 500; color: var(--text-1); }
 
-    .about-p {
+    /* ─── SPECIALTIES ─── */
+    .spec-wrap { background: var(--bg-2); border-radius: var(--r-xl); margin: 0 40px; padding: 80px; }
+
+    .spec-intro {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+      margin-bottom: 56px;
+    }
+    .spec-bio {
       font-size: 1.0625rem;
       color: var(--text-2);
       line-height: 1.78;
+      padding-top: 8px;
     }
-    .about-p strong { color: var(--text-1); font-weight: 600; }
+    .spec-bio strong { color: var(--text-1); font-weight: 600; }
 
-    .values-box {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      padding: 28px 32px;
-      background: var(--bg-2);
-      border-radius: var(--r-lg);
-    }
-    .val-row {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 4px 0;
-    }
-    .val-icon {
-      width: 38px; height: 38px;
-      background: var(--accent-light);
-      border-radius: var(--r-sm);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.1rem;
-      flex-shrink: 0;
-    }
-    .val-text {
-      font-size: 0.9375rem;
-      font-weight: 500;
-      color: var(--text-1);
-    }
-
-    /* ─── SKILLS ─── */
-    .skills-wrap {
-      background: var(--bg-2);
-      border-radius: var(--r-xl);
-      margin: 0 40px;
-      padding: 80px;
-    }
-    .skills-inner {
+    .spec-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: start;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
     }
-
-    .skills-list { display: flex; flex-direction: column; gap: 22px; margin-top: 40px; }
-
-    .skill-item { display: flex; flex-direction: column; gap: 9px; }
-    .skill-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .skill-name { font-size: 0.9375rem; font-weight: 600; color: var(--text-1); }
-    .skill-pct  { font-size: 0.8125rem; font-weight: 700; color: var(--accent); }
-
-    .skill-track {
-      height: 5px;
-      background: var(--border);
-      border-radius: 50px;
-      overflow: hidden;
-    }
-    .skill-bar {
-      height: 100%;
-      background: var(--accent);
-      border-radius: 50px;
-      transform-origin: left;
-      transform: scaleX(0);
-      transition: transform 1.3s var(--ease-out);
-    }
-    .skill-bar.run { transform: scaleX(1); }
-
-    .certs-list { display: flex; flex-direction: column; gap: 16px; margin-top: 40px; }
-    .cert-card {
-      display: flex;
-      gap: 18px;
-      padding: 22px 26px;
+    .spec-card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--r-md);
-      align-items: flex-start;
-      transition: border-color 0.25s, transform 0.25s var(--ease-out), box-shadow 0.25s;
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transition: all 0.3s var(--ease-out);
+      cursor: default;
     }
-    .cert-card:hover {
+    .spec-card:hover {
       border-color: var(--accent-light);
-      transform: translateX(5px);
-      box-shadow: var(--shadow-sm);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
     }
-    .cert-num {
-      font-size: 2.25rem;
-      font-weight: 800;
-      color: var(--accent-light);
-      letter-spacing: -0.05em;
-      line-height: 1;
-      flex-shrink: 0;
+    .spec-card:hover .spec-ic { background: var(--accent); color: oklch(99% 0.006 75); }
+    .spec-ic {
+      width: 42px; height: 42px;
+      background: var(--accent-light);
+      border-radius: var(--r-sm);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent-dark);
+      transition: all 0.3s var(--spring);
     }
-    .cert-body h4 {
-      font-size: 0.9375rem;
-      font-weight: 700;
-      color: var(--text-1);
-      letter-spacing: -0.02em;
-      margin-bottom: 4px;
-    }
-    .cert-body p { font-size: 0.8125rem; color: var(--text-3); }
+    .spec-ic svg { width: 20px; height: 20px; }
+    .spec-label { font-size: 0.875rem; font-weight: 700; color: var(--text-1); letter-spacing: -0.02em; line-height: 1.25; }
 
     /* ─── PROJECTS ─── */
     .projects-grid {
@@ -616,7 +377,6 @@
       gap: 18px;
       margin-top: 48px;
     }
-
     .proj-card {
       position: relative;
       border-radius: var(--r-lg);
@@ -624,106 +384,56 @@
       cursor: pointer;
       transition: transform 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out);
     }
-    .proj-card:hover {
-      transform: scale(1.02);
-      box-shadow: var(--shadow-lg);
-    }
+    .proj-card:hover { transform: scale(1.02); box-shadow: var(--shadow-lg); }
     .proj-card.featured { grid-row: 1 / 3; }
 
     .proj-bg {
-      position: absolute;
-      inset: 0;
-      background: var(--bg-2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 5rem;
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
       transition: transform 0.6s var(--ease-out);
     }
-    .proj-card.p2 .proj-bg { font-size: 3.5rem; }
-    .proj-card.p3 .proj-bg { font-size: 3.5rem; }
-    .proj-card:hover .proj-bg { transform: scale(1.1); }
+    .proj-card:hover .proj-bg { transform: scale(1.05); }
+
+    .proj-bg-1 { background: oklch(90% 0.018 75); }
+    .proj-bg-2 { background: oklch(88% 0.016 75); }
+    .proj-bg-3 { background: oklch(86% 0.018 55); }
+
+    .proj-bg svg { opacity: 0.18; }
 
     .proj-overlay {
-      position: absolute;
-      inset: 0;
-      padding: 24px;
-      background: linear-gradient(to top, oklch(17% 0.012 75 / 0.9) 0%, oklch(17% 0.012 75 / 0.4) 55%, transparent 100%);
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
+      position: absolute; inset: 0; padding: 24px;
+      background: linear-gradient(to top, oklch(17% 0.012 75 / 0.88) 0%, oklch(17% 0.012 75 / 0.35) 55%, transparent 100%);
+      display: flex; flex-direction: column; justify-content: flex-end;
     }
-
     .proj-tag {
       display: inline-block;
       padding: 4px 11px;
-      background: var(--accent);
-      border-radius: 50px;
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
+      background: var(--accent); border-radius: 50px;
+      font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase;
       color: oklch(99% 0.006 75);
-      margin-bottom: 10px;
-      width: fit-content;
+      margin-bottom: 10px; width: fit-content;
     }
-    .proj-name {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: oklch(96.5% 0.012 75);
-      letter-spacing: -0.03em;
-      line-height: 1.2;
-      margin-bottom: 5px;
-    }
+    .proj-name { font-size: 1.25rem; font-weight: 700; color: oklch(96.5% 0.012 75); letter-spacing: -0.03em; line-height: 1.2; margin-bottom: 5px; }
     .proj-card.featured .proj-name { font-size: 1.625rem; }
-    .proj-loc {
-      font-size: 0.8rem;
-      color: oklch(68% 0.008 75);
-    }
+    .proj-loc { font-size: 0.8rem; color: oklch(68% 0.008 75); }
 
     /* ─── CONTACT ─── */
-    .contact-wrap {
-      background: var(--bg-2);
-      border-radius: var(--r-xl);
-      margin: 0 40px;
-      padding: 80px;
-    }
-    .contact-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      max-width: 1100px;
-    }
-
-    .contact-details { display: flex; flex-direction: column; gap: 28px; margin-top: 40px; }
-    .contact-row {
-      display: flex;
-      gap: 16px;
-      align-items: flex-start;
-    }
+    .contact-wrap { background: var(--bg-2); border-radius: var(--r-xl); margin: 0 40px; padding: 80px; }
+    .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; max-width: 1100px; }
+    .contact-details { display: flex; flex-direction: column; gap: 24px; margin-top: 36px; }
+    .contact-row { display: flex; gap: 16px; align-items: flex-start; }
     .contact-ic {
       width: 44px; height: 44px;
-      background: var(--accent-light);
-      border-radius: var(--r-sm);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.125rem;
-      flex-shrink: 0;
+      background: var(--accent-light); border-radius: var(--r-sm);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent-dark); flex-shrink: 0;
     }
-    .contact-row-text h4 {
-      font-size: 0.72rem;
-      color: var(--text-3);
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      margin-bottom: 4px;
-    }
-    .contact-row-text p {
-      font-size: 1rem;
-      color: var(--text-1);
-      font-weight: 500;
-    }
+    .contact-ic svg { width: 20px; height: 20px; }
+    .contact-row-text h4 { font-size: 0.72rem; color: var(--text-3); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+    .contact-row-text p { font-size: 1rem; color: var(--text-1); font-weight: 500; }
+    .contact-row-text a { color: var(--text-1); text-decoration: none; }
+    .contact-row-text a:hover { color: var(--accent); }
 
     .contact-form { display: flex; flex-direction: column; gap: 14px; }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
@@ -748,35 +458,42 @@
     }
     .fg textarea { min-height: 110px; }
 
+    /* ─── WA FLOAT BUTTON ─── */
+    .wa-float {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 200;
+      width: 58px; height: 58px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 6px 24px rgba(37,211,102,0.4);
+      text-decoration: none;
+      transition: all 0.3s var(--spring);
+      animation: waPop 0.6s var(--spring) 1.5s both;
+    }
+    .wa-float:hover { transform: scale(1.12); box-shadow: 0 10px 36px rgba(37,211,102,0.5); }
+    .wa-float svg { width: 30px; height: 30px; fill: #fff; }
+    @keyframes waPop { from { opacity: 0; transform: scale(0.5); } to { opacity: 1; transform: scale(1); } }
+
     /* ─── FOOTER ─── */
     footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      display: flex; align-items: center; justify-content: space-between;
       padding: 44px 80px;
-      max-width: 1380px;
-      margin: 0 auto;
+      max-width: 1380px; margin: 0 auto;
       border-top: 1px solid var(--border);
     }
-    .footer-brand {
-      font-size: 0.9375rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-    }
+    .footer-brand { font-size: 0.9375rem; font-weight: 700; letter-spacing: -0.02em; }
     .footer-brand em { font-style: normal; color: var(--accent); }
     .footer-copy { font-size: 0.8125rem; color: var(--text-3); }
 
     /* ─── RESPONSIVE ─── */
     @media (max-width: 1024px) {
-      .hero { grid-template-columns: 1fr; text-align: center; padding: 120px 40px 60px; }
-      .hero-visual { justify-content: center; }
-      .hero-img-wrap { max-width: 380px; margin: 0 auto; }
-      .float-card { display: none; }
-      .hero-actions, .hero-stats { justify-content: center; }
-      .hero-sub { margin: 0 auto; }
       .about-grid { grid-template-columns: 1fr; }
       .about-img-wrap { max-width: 380px; aspect-ratio: 1; margin: 0 auto; }
-      .skills-inner { grid-template-columns: 1fr; gap: 48px; }
+      .spec-intro { grid-template-columns: 1fr; gap: 24px; }
+      .spec-grid { grid-template-columns: repeat(2, 1fr); }
       .projects-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
       .proj-card.featured { min-height: 380px; }
       .proj-card.p2, .proj-card.p3 { min-height: 240px; }
@@ -784,14 +501,15 @@
       .svc-row { grid-template-columns: 40px 1fr; }
       .svc-tags { display: none; }
     }
-
     @media (max-width: 768px) {
       .section { padding: 56px 24px; }
-      .services-wrap, .skills-wrap, .contact-wrap { margin: 0 16px; padding: 48px 24px; }
+      .services-wrap, .spec-wrap, .contact-wrap { margin: 0 16px; padding: 48px 24px; }
       nav .hide-mob { display: none; }
       footer { flex-direction: column; gap: 10px; text-align: center; padding: 32px 24px; }
       .hero { padding: 100px 24px 48px; }
       .form-row { grid-template-columns: 1fr; }
+      .spec-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero-stats { gap: 20px; }
     }
 
     ::-webkit-scrollbar { width: 5px; }
@@ -811,48 +529,55 @@
   </nav>
 
   <!-- ── HERO ── -->
-  <div class="hero">
-    <div class="hero-text">
-      <div class="hero-badge">Disponible para proyectos 2026</div>
-      <h1 class="hero-title">
-        Josias
-        <span class="accent-line">Lopez</span>
-      </h1>
-      <p class="hero-sub">
-        Maestro Mayor de Obra con más de 30 años de experiencia en construcción residencial, comercial e industrial. Precisión, compromiso y excelencia en cada proyecto.
-      </p>
-      <div class="hero-actions">
-        <a href="#contacto" class="btn btn-dark">Solicitar presupuesto</a>
-        <a href="#proyectos" class="btn btn-ghost">Ver proyectos</a>
-      </div>
-      <div class="hero-stats">
-        <div>
-          <div class="stat-n">30+</div>
-          <div class="stat-l">Años de experiencia</div>
-        </div>
-        <div>
-          <div class="stat-n">200+</div>
-          <div class="stat-l">Obras realizadas</div>
-        </div>
-        <div>
-          <div class="stat-n">100%</div>
-          <div class="stat-l">Clientes satisfechos</div>
-        </div>
-      </div>
+  <div class="hero" style="position:relative;">
+    <div class="hero-deco">
+      <svg width="600" height="600" viewBox="0 0 600 600" fill="none" stroke="oklch(18% 0.012 75)" stroke-width="0.8">
+        <rect x="50" y="50" width="500" height="500"/>
+        <line x1="50" y1="200" x2="550" y2="200"/>
+        <line x1="50" y1="350" x2="550" y2="350"/>
+        <line x1="200" y1="50" x2="200" y2="550"/>
+        <line x1="350" y1="50" x2="350" y2="550"/>
+        <rect x="200" y="200" width="150" height="200"/>
+        <line x1="275" y1="200" x2="275" y2="400"/>
+        <rect x="230" y="310" width="90" height="90"/>
+        <rect x="220" y="215" width="50" height="60"/>
+        <rect x="280" y="215" width="50" height="60"/>
+      </svg>
     </div>
 
-    <div class="hero-visual">
-      <div class="float-card">
-        <div class="float-card-eyebrow">Estado actual</div>
-        <div class="float-card-val">Activo</div>
-        <div class="float-card-sub">Disponible ahora</div>
+    <div class="hero-badge">Disponible para proyectos 2026</div>
+
+    <h1 class="hero-title">
+      Josias
+      <span class="accent-line">Lopez</span>
+    </h1>
+
+    <p class="hero-sub">
+      Maestro Mayor de Obra con más de 3 años de experiencia en construcción, diseño, planos y modelado 3D arquitectónico. Precisión y compromiso en cada proyecto.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#contacto" class="btn btn-dark">Solicitar presupuesto</a>
+      <a href="https://wa.me/542494510809" target="_blank" rel="noopener" class="btn btn-wa">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+        WhatsApp
+      </a>
+    </div>
+
+    <div class="hero-stats">
+      <div>
+        <div class="stat-n">3+</div>
+        <div class="stat-l">Años de experiencia</div>
       </div>
-      <div class="hero-img-wrap">
-        <img src="josias.jpg" alt="Josias Lopez — Maestro Mayor de Obra" loading="eager">
-        <div class="hero-img-overlay">
-          <div class="hero-img-loc">Mar del Plata, Argentina</div>
-          <div class="hero-exp-pill">30+ años</div>
-        </div>
+      <div class="hero-stats-divider"></div>
+      <div>
+        <div class="stat-n">23</div>
+        <div class="stat-l">Obras realizadas</div>
+      </div>
+      <div class="hero-stats-divider"></div>
+      <div>
+        <div class="stat-n">100%</div>
+        <div class="stat-l">Clientes satisfechos</div>
       </div>
     </div>
   </div>
@@ -864,80 +589,93 @@
     <p class="section-sub reveal d2">Desde el planeamiento hasta la entrega, cada etapa con la misma dedicación.</p>
 
     <div class="services-list">
+
       <div class="svc-row reveal d1">
         <div class="svc-num">01</div>
         <div class="svc-body">
           <div class="svc-header">
-            <div class="svc-icon">🏗️</div>
-            <div class="svc-name">Construcción desde cero</div>
+            <div class="svc-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 21h18M9 21V7l3-4 3 4v14"/><line x1="9" y1="12" x2="15" y2="12"/>
+                <rect x="10" y="15" width="4" height="6"/>
+              </svg>
+            </div>
+            <div class="svc-name">Maestro Mayor de Obras</div>
           </div>
-          <p class="svc-desc">Viviendas, locales y edificios. Dirección técnica completa desde los cimientos hasta la terminación, con control de calidad en cada etapa.</p>
+          <p class="svc-desc">Dirección técnica y conducción de obra completa. Coordinación de cuadrillas, materiales y plazos desde la fundación hasta la entrega.</p>
         </div>
-        <div class="svc-tags">
-          <span class="svc-tag">Residencial</span>
-          <span class="svc-tag">Comercial</span>
-        </div>
+        <div class="svc-tags"><span class="svc-tag">Residencial</span><span class="svc-tag">Comercial</span></div>
       </div>
 
       <div class="svc-row reveal d2">
         <div class="svc-num">02</div>
         <div class="svc-body">
           <div class="svc-header">
-            <div class="svc-icon">🔨</div>
-            <div class="svc-name">Remodelaciones y refacciones</div>
+            <div class="svc-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
+                <polyline points="14 2 14 8 20 8"/>
+                <line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/>
+              </svg>
+            </div>
+            <div class="svc-name">Planos de Obra</div>
           </div>
-          <p class="svc-desc">Ampliaciones, reformas integrales y remodelaciones ejecutadas con mínima interrupción de la actividad del cliente.</p>
+          <p class="svc-desc">Elaboración de planos arquitectónicos, estructurales y de detalle. Documentación técnica completa para trámites municipales y ejecución de obra.</p>
         </div>
-        <div class="svc-tags">
-          <span class="svc-tag">Ampliaciones</span>
-          <span class="svc-tag">Reformas</span>
-        </div>
+        <div class="svc-tags"><span class="svc-tag">Arquitectónico</span><span class="svc-tag">Estructural</span></div>
       </div>
 
       <div class="svc-row reveal d3">
         <div class="svc-num">03</div>
         <div class="svc-body">
           <div class="svc-header">
-            <div class="svc-icon">📐</div>
-            <div class="svc-name">Supervisión de obra</div>
+            <div class="svc-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+              </svg>
+            </div>
+            <div class="svc-name">Diseño y Dirección de Obra</div>
           </div>
-          <p class="svc-desc">Control de calidad, plazos y costos. Representación técnica ante profesionales, empresas y organismos gubernamentales.</p>
+          <p class="svc-desc">Diseño arquitectónico funcional y estético integrado con la dirección técnica. Un único responsable desde el concepto hasta la llave en mano.</p>
         </div>
-        <div class="svc-tags">
-          <span class="svc-tag">Control</span>
-          <span class="svc-tag">Dirección</span>
-        </div>
+        <div class="svc-tags"><span class="svc-tag">Diseño</span><span class="svc-tag">Dirección</span></div>
       </div>
 
       <div class="svc-row reveal d4">
         <div class="svc-num">04</div>
         <div class="svc-body">
           <div class="svc-header">
-            <div class="svc-icon">🏭</div>
-            <div class="svc-name">Proyectos industriales</div>
+            <div class="svc-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+            </div>
+            <div class="svc-name">Incorporaciones y Certificados</div>
           </div>
-          <p class="svc-desc">Galpones, depósitos y plantas de producción. Estructuras metálicas y mixtas adaptadas a cada necesidad operativa.</p>
+          <p class="svc-desc">Gestión de incorporaciones al catastro municipal, planos de mensura y certificados de obra. Trámites ante organismos públicos con experiencia probada.</p>
         </div>
-        <div class="svc-tags">
-          <span class="svc-tag">Galpones</span>
-          <span class="svc-tag">Industrial</span>
-        </div>
+        <div class="svc-tags"><span class="svc-tag">Municipal</span><span class="svc-tag">Catastro</span></div>
       </div>
 
       <div class="svc-row reveal d5">
         <div class="svc-num">05</div>
         <div class="svc-body">
           <div class="svc-header">
-            <div class="svc-icon">💬</div>
-            <div class="svc-name">Asesoramiento técnico</div>
+            <div class="svc-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                <polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/>
+              </svg>
+            </div>
+            <div class="svc-name">Modelado 3D y Renderizaciones</div>
           </div>
-          <p class="svc-desc">Consultas, presupuestos y orientación técnica para propietarios que quieren tomar las mejores decisiones antes de construir.</p>
+          <p class="svc-desc">Modelado arquitectónico 3D y renders fotorrealistas para visualizar el proyecto antes de construir. Ideal para presentaciones y toma de decisiones.</p>
         </div>
-        <div class="svc-tags">
-          <span class="svc-tag">Consulta</span>
-          <span class="svc-tag">Presupuesto</span>
-        </div>
+        <div class="svc-tags"><span class="svc-tag">3D</span><span class="svc-tag">Renders</span></div>
       </div>
+
     </div>
   </div>
 
@@ -948,128 +686,139 @@
         <img src="josias.jpg" alt="Josias Lopez" loading="lazy">
         <div class="accent-block"></div>
       </div>
-
       <div class="about-content">
         <div>
           <div class="eyebrow reveal">Sobre mí</div>
-          <h2 class="section-title reveal d1">Más de tres décadas construyendo confianza</h2>
+          <h2 class="section-title reveal d1">Construcción, diseño y tecnología en un solo lugar</h2>
         </div>
         <p class="about-p reveal d2">
-          Soy Josias Lopez, <strong>Maestro Mayor de Obra</strong> con título habilitante y más de 30 años de trayectoria en la industria de la construcción. A lo largo de mi carrera lideré proyectos de todo tipo y escala, siempre con foco en la <strong>calidad, los tiempos y la satisfacción del cliente</strong>.
+          Soy <strong>Josias Lopez</strong>, Maestro Mayor de Obra con más de 3 años realizando proyectos integrales. Combino el oficio tradicional de la construcción con herramientas modernas de diseño y modelado 3D para ofrecer un servicio completo y diferencial.
         </p>
         <p class="about-p reveal d3">
-          Mi enfoque combina el conocimiento técnico riguroso con la capacidad de gestionar equipos y coordinar cada etapa del proceso constructivo. Creo en la comunicación constante y en la transparencia como base de toda relación profesional.
+          Desde la gestión de planos y certificados hasta la renderización arquitectónica, acompaño a mis clientes en cada etapa con claridad, compromiso y precisión técnica.
         </p>
         <div class="values-box reveal d4">
           <div class="val-row">
-            <div class="val-icon">🎯</div>
-            <div class="val-text">Compromiso con los plazos acordados</div>
+            <div class="val-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="val-text">Compromiso con plazos y presupuestos</div>
           </div>
           <div class="val-row">
-            <div class="val-icon">🔩</div>
-            <div class="val-text">Materiales y técnicas de primera calidad</div>
+            <div class="val-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="val-text">Visualización 3D antes de construir</div>
           </div>
           <div class="val-row">
-            <div class="val-icon">📋</div>
-            <div class="val-text">Presupuestos claros, sin sorpresas</div>
+            <div class="val-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="val-text">Gestión completa de trámites municipales</div>
           </div>
           <div class="val-row">
-            <div class="val-icon">🤝</div>
-            <div class="val-text">Trato directo y comunicación permanente</div>
+            <div class="val-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="val-text">Comunicación directa en cada etapa</div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ── SKILLS ── -->
-  <div class="skills-wrap">
-    <div class="skills-inner">
+  <!-- ── SPECIALTIES ── -->
+  <div class="spec-wrap">
+    <div class="spec-intro">
       <div>
-        <div class="eyebrow reveal">Experiencia técnica</div>
-        <h2 class="section-title reveal d1">Habilidades y especialidades</h2>
-        <div class="skills-list">
-          <div class="skill-item reveal d1">
-            <div class="skill-row">
-              <span class="skill-name">Construcción estructural</span>
-              <span class="skill-pct">98%</span>
-            </div>
-            <div class="skill-track">
-              <div class="skill-bar" data-w="98"></div>
-            </div>
-          </div>
-          <div class="skill-item reveal d2">
-            <div class="skill-row">
-              <span class="skill-name">Lectura e interpretación de planos</span>
-              <span class="skill-pct">95%</span>
-            </div>
-            <div class="skill-track">
-              <div class="skill-bar" data-w="95"></div>
-            </div>
-          </div>
-          <div class="skill-item reveal d3">
-            <div class="skill-row">
-              <span class="skill-name">Gestión y liderazgo de equipos</span>
-              <span class="skill-pct">93%</span>
-            </div>
-            <div class="skill-track">
-              <div class="skill-bar" data-w="93"></div>
-            </div>
-          </div>
-          <div class="skill-item reveal d4">
-            <div class="skill-row">
-              <span class="skill-name">Presupuestación y costos</span>
-              <span class="skill-pct">91%</span>
-            </div>
-            <div class="skill-track">
-              <div class="skill-bar" data-w="91"></div>
-            </div>
-          </div>
-          <div class="skill-item reveal d5">
-            <div class="skill-row">
-              <span class="skill-name">Instalaciones y terminaciones</span>
-              <span class="skill-pct">88%</span>
-            </div>
-            <div class="skill-track">
-              <div class="skill-bar" data-w="88"></div>
-            </div>
-          </div>
+        <div class="eyebrow reveal">Especialidades</div>
+        <h2 class="section-title reveal d1">Todo lo que puedo hacer por tu proyecto</h2>
+      </div>
+      <p class="spec-bio reveal d2">
+        Desde hace más de 3 años realizo proyectos como <strong>Maestro Mayor de Obras</strong>, elaboro <strong>planos de obra</strong>, dirijo proyectos de construcción, gestiono incorporaciones y certificados, y ofrezco <strong>modelado 3D arquitectónico y renderizaciones</strong> fotorrealistas para que visualices tu proyecto antes de empezar.
+      </p>
+    </div>
+
+    <div class="spec-grid">
+      <div class="spec-card reveal d1">
+        <div class="spec-ic">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 21h18M9 21V7l3-4 3 4v14"/><rect x="10" y="15" width="4" height="6"/><line x1="9" y1="12" x2="15" y2="12"/>
+          </svg>
         </div>
+        <div class="spec-label">Maestro Mayor de Obras</div>
       </div>
 
-      <div>
-        <div class="eyebrow reveal">Formación</div>
-        <h2 class="section-title reveal d1">Título y certificaciones</h2>
-        <div class="certs-list">
-          <div class="cert-card reveal d2">
-            <div class="cert-num">01</div>
-            <div class="cert-body">
-              <h4>Maestro Mayor de Obra</h4>
-              <p>Título habilitante nacional</p>
-            </div>
-          </div>
-          <div class="cert-card reveal d3">
-            <div class="cert-num">02</div>
-            <div class="cert-body">
-              <h4>Seguridad e Higiene en Obra</h4>
-              <p>Certificación vigente — Ministerio de Trabajo</p>
-            </div>
-          </div>
-          <div class="cert-card reveal d4">
-            <div class="cert-num">03</div>
-            <div class="cert-body">
-              <h4>Construcción en seco</h4>
-              <p>Durlock / Knauf — Certificado oficial</p>
-            </div>
-          </div>
-          <div class="cert-card reveal d5">
-            <div class="cert-num">04</div>
-            <div class="cert-body">
-              <h4>Inspección y control de calidad</h4>
-              <p>Certificación IRAM — Materiales y estructuras</p>
-            </div>
-          </div>
+      <div class="spec-card reveal d2">
+        <div class="spec-ic">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="12" y2="17"/>
+          </svg>
         </div>
+        <div class="spec-label">Planos de Obra</div>
+      </div>
+
+      <div class="spec-card reveal d3">
+        <div class="spec-ic">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>
+          </svg>
+        </div>
+        <div class="spec-label">Diseño de Obra</div>
+      </div>
+
+      <div class="spec-card reveal d4">
+        <div class="spec-ic">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+        </div>
+        <div class="spec-label">Dirección de Obra</div>
+      </div>
+
+      <div class="spec-card reveal d2">
+        <div class="spec-ic">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+        </div>
+        <div class="spec-label">Incorporaciones</div>
+      </div>
+
+      <div class="spec-card reveal d3">
+        <div class="spec-ic">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="8" r="6"/>
+            <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/>
+          </svg>
+        </div>
+        <div class="spec-label">Certificados</div>
+      </div>
+
+      <div class="spec-card reveal d4">
+        <div class="spec-ic">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+            <polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/>
+          </svg>
+        </div>
+        <div class="spec-label">Modelado 3D arquitectónico</div>
+      </div>
+
+      <div class="spec-card reveal d5">
+        <div class="spec-ic">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <polyline points="21 15 16 10 5 21"/>
+          </svg>
+        </div>
+        <div class="spec-label">Renderizaciones</div>
       </div>
     </div>
   </div>
@@ -1078,31 +827,66 @@
   <div class="section" id="proyectos">
     <div class="eyebrow reveal">Portafolio</div>
     <h2 class="section-title reveal d1">Obras que hablan<br>por sí solas</h2>
-    <p class="section-sub reveal d2">Una selección de proyectos destacados de los últimos años.</p>
+    <p class="section-sub reveal d2">Una selección de proyectos destacados realizados en Tandil.</p>
 
     <div class="projects-grid">
       <div class="proj-card featured reveal">
-        <div class="proj-bg">🏠</div>
+        <div class="proj-bg proj-bg-1">
+          <svg width="200" height="220" viewBox="0 0 200 220" fill="none" stroke="oklch(18% 0.012 75)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="100,18 178,75 178,210 22,210 22,75"/>
+            <line x1="100" y1="18" x2="100" y2="210"/>
+            <rect x="62" y="138" width="76" height="72"/>
+            <line x1="100" y1="138" x2="100" y2="210"/>
+            <rect x="32" y="90" width="44" height="40"/>
+            <rect x="124" y="90" width="44" height="40"/>
+            <line x1="22" y1="75" x2="100" y2="18"/>
+            <line x1="100" y1="18" x2="178" y2="75"/>
+          </svg>
+        </div>
         <div class="proj-overlay">
           <span class="proj-tag">Residencial</span>
           <div class="proj-name">Casa particular Zona Norte</div>
-          <div class="proj-loc">Mar del Plata · 280 m² · 2024</div>
+          <div class="proj-loc">Tandil · 280 m² · 2024</div>
         </div>
       </div>
+
       <div class="proj-card p2 reveal d2">
-        <div class="proj-bg">🏢</div>
+        <div class="proj-bg proj-bg-2">
+          <svg width="120" height="150" viewBox="0 0 120 150" fill="none" stroke="oklch(18% 0.012 75)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="15" y="25" width="90" height="118"/>
+            <line x1="15" y1="60" x2="105" y2="60"/>
+            <line x1="15" y1="95" x2="105" y2="95"/>
+            <rect x="27" y="35" width="20" height="16"/>
+            <rect x="73" y="35" width="20" height="16"/>
+            <rect x="27" y="68" width="20" height="16"/>
+            <rect x="73" y="68" width="20" height="16"/>
+            <rect x="40" y="108" width="40" height="35"/>
+          </svg>
+        </div>
         <div class="proj-overlay">
           <span class="proj-tag">Comercial</span>
-          <div class="proj-name">Local en galería comercial</div>
-          <div class="proj-loc">Mar del Plata · 120 m² · 2024</div>
+          <div class="proj-name">Local comercial</div>
+          <div class="proj-loc">Tandil · 120 m² · 2024</div>
         </div>
       </div>
+
       <div class="proj-card p3 reveal d3">
-        <div class="proj-bg">🏭</div>
+        <div class="proj-bg proj-bg-3">
+          <svg width="160" height="110" viewBox="0 0 160 110" fill="none" stroke="oklch(18% 0.012 75)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10,100 L10,45 L80,18 L150,45 L150,100 Z"/>
+            <line x1="10" y1="100" x2="150" y2="100"/>
+            <line x1="80" y1="18" x2="80" y2="100"/>
+            <line x1="10" y1="45" x2="150" y2="45"/>
+            <rect x="50" y="70" width="30" height="30"/>
+            <rect x="100" y="55" width="35" height="16"/>
+            <line x1="28" y1="100" x2="28" y2="55"/>
+            <line x1="132" y1="100" x2="132" y2="55"/>
+          </svg>
+        </div>
         <div class="proj-overlay">
           <span class="proj-tag">Industrial</span>
           <div class="proj-name">Galpón logístico</div>
-          <div class="proj-loc">Balcarce · 600 m² · 2023</div>
+          <div class="proj-loc">Tandil · 600 m² · 2023</div>
         </div>
       </div>
     </div>
@@ -1117,24 +901,35 @@
         <p class="section-sub reveal d2">Sin costo de consulta. Respuesta en menos de 24 horas.</p>
         <div class="contact-details">
           <div class="contact-row reveal d3">
-            <div class="contact-ic">📞</div>
+            <div class="contact-ic">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+            </div>
             <div class="contact-row-text">
-              <h4>Teléfono</h4>
-              <p>+54 223 XXX XXXX</p>
+              <h4>WhatsApp</h4>
+              <p><a href="https://wa.me/542494510809" target="_blank" rel="noopener">+54 249 451-0809</a></p>
             </div>
           </div>
           <div class="contact-row reveal d4">
-            <div class="contact-ic">✉️</div>
+            <div class="contact-ic">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+            </div>
             <div class="contact-row-text">
               <h4>Email</h4>
-              <p>josias.lopez@email.com</p>
+              <p><a href="mailto:josiaslopezmmo@gmail.com">josiaslopezmmo@gmail.com</a></p>
             </div>
           </div>
           <div class="contact-row reveal d5">
-            <div class="contact-ic">📍</div>
+            <div class="contact-ic">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+              </svg>
+            </div>
             <div class="contact-row-text">
               <h4>Zona de trabajo</h4>
-              <p>Mar del Plata y alrededores</p>
+              <p>Tandil y alrededores</p>
             </div>
           </div>
         </div>
@@ -1153,7 +948,7 @@
         </div>
         <div class="fg">
           <label for="email">Email</label>
-          <input type="email" id="email" placeholder="tu@email.com" required>
+          <input type="email" id="email" placeholder="tu@email.com">
         </div>
         <div class="fg">
           <label for="tipo">Tipo de proyecto</label>
@@ -1161,8 +956,10 @@
             <option value="">Seleccioná una opción</option>
             <option>Construcción nueva</option>
             <option>Remodelación</option>
-            <option>Supervisión de obra</option>
-            <option>Proyecto industrial</option>
+            <option>Planos de obra</option>
+            <option>Dirección de obra</option>
+            <option>Incorporación / Certificado</option>
+            <option>Modelado 3D / Renderización</option>
             <option>Asesoramiento técnico</option>
           </select>
         </div>
@@ -1170,8 +967,9 @@
           <label for="msg">Mensaje</label>
           <textarea id="msg" placeholder="Contame sobre tu proyecto..."></textarea>
         </div>
-        <button type="submit" class="btn btn-dark" id="submit-btn" style="width:100%; justify-content:center;">
-          Enviar consulta
+        <button type="submit" class="btn btn-wa" id="submit-btn" style="width:100%; justify-content:center;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+          Enviar por WhatsApp
         </button>
       </form>
     </div>
@@ -1180,49 +978,51 @@
   <!-- ── FOOTER ── -->
   <footer>
     <div class="footer-brand">Josias <em>Lopez</em></div>
-    <div class="footer-copy">© 2026 · Maestro Mayor de Obra · Mar del Plata</div>
+    <div class="footer-copy">© 2026 · Maestro Mayor de Obra · Tandil</div>
   </footer>
+
+  <!-- ── WHATSAPP FLOAT ── -->
+  <a class="wa-float" href="https://wa.me/542494510809" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+  </a>
 
   <script>
     // Reveal on scroll
     const io = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
-    }, { threshold: 0.12 });
+    }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-    // Skill bars
-    const skillIo = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          const w = e.target.dataset.w;
-          e.target.style.width = w + '%';
-          e.target.classList.add('run');
-        }
-      });
-    }, { threshold: 0.5 });
-    document.querySelectorAll('.skill-bar').forEach(el => skillIo.observe(el));
 
     // Nav scroll shadow
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => {
-      nav.style.boxShadow = scrollY > 50
-        ? '0 8px 48px oklch(18% 0.012 75 / 0.16)'
-        : '';
+      nav.style.boxShadow = scrollY > 50 ? '0 8px 48px oklch(18% 0.012 75 / 0.16)' : '';
     }, { passive: true });
 
-    // Form
+    // Form → WhatsApp
     document.getElementById('contact-form').addEventListener('submit', e => {
       e.preventDefault();
+      const nombre = document.getElementById('nombre').value.trim();
+      const tel    = document.getElementById('tel').value.trim();
+      const email  = document.getElementById('email').value.trim();
+      const tipo   = document.getElementById('tipo').value;
+      const msg    = document.getElementById('msg').value.trim();
+
+      let text = `Hola Josias! Te escribo desde tu web.\n\n`;
+      text += `*Nombre:* ${nombre}\n`;
+      if (tel)   text += `*Teléfono:* ${tel}\n`;
+      if (email) text += `*Email:* ${email}\n`;
+      if (tipo)  text += `*Tipo de proyecto:* ${tipo}\n`;
+      if (msg)   text += `\n*Mensaje:* ${msg}`;
+
+      const url = `https://wa.me/542494510809?text=${encodeURIComponent(text)}`;
+      window.open(url, '_blank', 'noopener');
+
       const btn = document.getElementById('submit-btn');
-      btn.textContent = 'Enviado ✓';
-      btn.style.background = 'var(--accent)';
+      const orig = btn.innerHTML;
+      btn.textContent = 'Abriendo WhatsApp...';
       btn.disabled = true;
-      setTimeout(() => {
-        btn.textContent = 'Enviar consulta';
-        btn.style.background = '';
-        btn.disabled = false;
-        e.target.reset();
-      }, 3500);
+      setTimeout(() => { btn.innerHTML = orig; btn.disabled = false; }, 3000);
     });
   </script>
 </body>
