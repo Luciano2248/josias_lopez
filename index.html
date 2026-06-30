@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Josias Lopez — Maestro Mayor de Obra</title>
+  <link rel="icon" type="image/png" href="jl-hero-title.png">
+  <link rel="apple-touch-icon" href="jl-hero-title.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
@@ -67,14 +69,24 @@
       white-space: nowrap;
     }
     .nav-logo {
-      font-weight: 700;
-      font-size: 0.875rem;
-      letter-spacing: -0.025em;
-      color: var(--text-1);
-      padding: 7px 16px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 34px;
+      padding: 4px 12px;
       margin-right: 6px;
+      text-decoration: none;
+      border-radius: 50px;
+      transition: background 0.2s var(--ease-ios), transform 0.2s var(--ease-ios);
     }
-    .nav-logo em { font-style: normal; color: var(--accent); }
+    .nav-logo:hover { background: var(--bg-2); transform: translateY(-1px); }
+    .nav-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
     nav a {
       text-decoration: none;
       font-size: 0.8125rem;
@@ -144,7 +156,7 @@
     }
 
     .hero-title {
-      width: min(520px, 72vw);
+      width: min(360px, 54vw);
       margin: 0 auto;
       opacity: 0;
       transform: translateY(30px);
@@ -158,11 +170,13 @@
     }
 
     .hero-name {
-      margin-top: -10px;
-      font-size: clamp(1.7rem, 4vw, 3rem);
-      font-weight: 800;
-      line-height: 1;
-      color: var(--accent);
+      margin-top: -4px;
+      font-size: clamp(1.05rem, 2.2vw, 1.55rem);
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      line-height: 1.2;
+      color: var(--text-1);
+      text-transform: uppercase;
       opacity: 0;
       transform: translateY(20px);
       animation: fadeUp 0.9s var(--ease-out) 0.38s forwards;
@@ -538,9 +552,12 @@
     @media (max-width: 768px) {
       .section { padding: 56px 24px; }
       .services-wrap, .spec-wrap, .contact-wrap { margin: 0 16px; padding: 48px 24px; }
+      .nav-logo { width: 44px; height: 32px; padding-inline: 11px; }
       nav .hide-mob { display: none; }
       footer { flex-direction: column; gap: 10px; text-align: center; padding: 32px 24px; }
       .hero { padding: 100px 24px 48px; }
+      .hero-title { width: min(250px, 64vw); }
+      .hero-name { font-size: 0.92rem; letter-spacing: 0.14em; }
       .form-row { grid-template-columns: 1fr; }
       .spec-grid { grid-template-columns: repeat(2, 1fr); }
       .hero-stats { gap: 20px; }
@@ -555,7 +572,9 @@
 
   <!-- ── NAV ── -->
   <nav id="nav">
-    <div class="nav-logo">Josias <em>Lopez</em></div>
+    <a class="nav-logo" href="#top" aria-label="Josias Lopez">
+      <img src="jl-hero-title.png" alt="">
+    </a>
     <a href="#servicios" class="hide-mob">Servicios</a>
     <a href="#sobre-mi" class="hide-mob">Sobre mí</a>
     <a href="#proyectos" class="hide-mob">Proyectos</a>
@@ -563,7 +582,7 @@
   </nav>
 
   <!-- ── HERO ── -->
-  <div class="hero" style="position:relative;">
+  <div class="hero" id="top" style="position:relative;">
     <div class="hero-deco">
       <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1920&q=80" alt="" aria-hidden="true" loading="eager">
     </div>
