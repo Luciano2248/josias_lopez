@@ -144,15 +144,29 @@
     }
 
     .hero-title {
-      font-size: clamp(4rem, 10vw, 8.5rem);
-      font-weight: 800;
-      letter-spacing: -0.05em;
-      line-height: 0.9;
+      width: min(520px, 72vw);
+      margin: 0 auto;
       opacity: 0;
       transform: translateY(30px);
       animation: fadeUp 0.9s var(--ease-out) 0.3s forwards;
     }
-    .hero-title .accent-line { display: block; color: var(--accent); }
+    .hero-title img {
+      display: block;
+      width: 100%;
+      height: auto;
+      filter: drop-shadow(0 14px 28px oklch(18% 0.012 75 / 0.12));
+    }
+
+    .hero-name {
+      margin-top: -10px;
+      font-size: clamp(1.7rem, 4vw, 3rem);
+      font-weight: 800;
+      line-height: 1;
+      color: var(--accent);
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.9s var(--ease-out) 0.38s forwards;
+    }
 
     .hero-sub {
       font-size: 1.125rem;
@@ -556,10 +570,11 @@
 
     <div class="hero-badge">Disponible para proyectos 2026</div>
 
-    <h1 class="hero-title">
-      Josias
-      <span class="accent-line">Lopez MMO</span>
+    <h1 class="hero-title" aria-label="JL">
+      <img src="jl-hero-title.png" alt="JL">
     </h1>
+
+    <div class="hero-name">Josias Lopez</div>
 
     <p class="hero-sub">
       Maestro Mayor de Obra con más de 3 años de experiencia en construcción, diseño, planos y modelado 3D arquitectónico. Precisión y compromiso en cada proyecto.
