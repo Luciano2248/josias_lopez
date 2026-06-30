@@ -418,53 +418,146 @@
     .spec-label { font-size: 0.875rem; font-weight: 700; color: var(--text-1); letter-spacing: -0.02em; line-height: 1.25; }
 
     /* ─── PROJECTS ─── */
-    .projects-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      grid-template-rows: 300px 240px;
-      gap: 18px;
+    .project-showcase {
       margin-top: 48px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 280px;
+      gap: 24px;
+      align-items: stretch;
     }
-    .proj-card {
+    .project-carousel {
       position: relative;
-      border-radius: var(--r-lg);
       overflow: hidden;
-      cursor: pointer;
-      transition: transform 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out);
+      border-radius: var(--r-lg);
+      background: var(--dark-bg);
+      box-shadow: var(--shadow-lg);
+      aspect-ratio: 16 / 10;
     }
-    .proj-card:hover { transform: scale(1.02); box-shadow: var(--shadow-lg); }
-    .proj-card.featured { grid-row: 1 / 3; }
-
-    .proj-bg {
-      position: absolute; inset: 0;
-      display: flex; align-items: center; justify-content: center;
-      transition: transform 0.6s var(--ease-out);
+    .carousel-track {
+      height: 100%;
+      display: flex;
+      transition: transform 0.55s var(--ease-out);
     }
-    .proj-card:hover .proj-bg { transform: scale(1.05); }
-
-    .proj-bg-1 { background: oklch(90% 0.018 75); }
-    .proj-bg-2 { background: oklch(88% 0.016 75); }
-    .proj-bg-3 { background: oklch(86% 0.018 55); }
-
-    .proj-bg svg { opacity: 0.18; }
-
-    .proj-overlay {
-      position: absolute; inset: 0; padding: 24px;
-      background: linear-gradient(to top, oklch(17% 0.012 75 / 0.88) 0%, oklch(17% 0.012 75 / 0.35) 55%, transparent 100%);
-      display: flex; flex-direction: column; justify-content: flex-end;
+    .carousel-slide {
+      flex: 0 0 100%;
+      min-width: 100%;
+      height: 100%;
+      position: relative;
+      background: var(--dark-bg);
     }
-    .proj-tag {
-      display: inline-block;
-      padding: 4px 11px;
-      background: var(--accent); border-radius: 50px;
-      font-size: 0.68rem; font-weight: 700;
-      letter-spacing: 0.06em; text-transform: uppercase;
+    .carousel-slide img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: center;
+      filter: saturate(0.96) contrast(1.02);
+    }
+    .carousel-slide::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, oklch(17% 0.012 75 / 0.45), transparent 42%);
+      pointer-events: none;
+    }
+    .carousel-control {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 2;
+      width: 44px;
+      height: 44px;
+      border: 1px solid oklch(99% 0.006 75 / 0.45);
+      border-radius: 50%;
+      background: oklch(18% 0.012 75 / 0.48);
       color: oklch(99% 0.006 75);
-      margin-bottom: 10px; width: fit-content;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: transform 0.2s var(--ease-ios), background 0.2s var(--ease-ios);
     }
-    .proj-name { font-size: 1.25rem; font-weight: 700; color: oklch(96.5% 0.012 75); letter-spacing: -0.03em; line-height: 1.2; margin-bottom: 5px; }
-    .proj-card.featured .proj-name { font-size: 1.625rem; }
-    .proj-loc { font-size: 0.8rem; color: oklch(68% 0.008 75); }
+    .carousel-control:hover { background: oklch(18% 0.012 75 / 0.72); }
+    .carousel-control:active { transform: translateY(-50%) scale(0.96); }
+    .carousel-control.prev { left: 18px; }
+    .carousel-control.next { right: 18px; }
+    .carousel-control svg { width: 20px; height: 20px; }
+    .carousel-status {
+      position: absolute;
+      left: 22px;
+      bottom: 18px;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      border-radius: 50px;
+      background: oklch(18% 0.012 75 / 0.58);
+      color: oklch(96.5% 0.012 75);
+      font-size: 0.75rem;
+      font-weight: 700;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .project-panel {
+      padding: 28px;
+      border-radius: var(--r-lg);
+      background: var(--dark-bg);
+      color: var(--dark-text);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 28px;
+    }
+    .project-panel h3 {
+      font-size: clamp(1.35rem, 2.5vw, 2rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+    .project-panel p {
+      color: var(--dark-muted);
+      font-size: 0.95rem;
+      line-height: 1.65;
+    }
+    .project-meta {
+      display: grid;
+      gap: 10px;
+      padding-top: 18px;
+      border-top: 1px solid var(--dark-line);
+    }
+    .project-meta span {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 0.78rem;
+      color: var(--dark-muted);
+    }
+    .project-meta strong {
+      color: var(--dark-text);
+      font-weight: 700;
+      text-align: right;
+    }
+    .carousel-dots {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+    .carousel-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      border: 0;
+      background: var(--dark-line);
+      cursor: pointer;
+      transition: transform 0.2s var(--ease-ios), background 0.2s var(--ease-ios);
+    }
+    .carousel-dot.active {
+      background: var(--accent);
+      transform: scale(1.28);
+    }
 
     /* ─── CONTACT ─── */
     .contact-wrap { background: var(--bg-2); border-radius: var(--r-xl); margin: 0 40px; padding: 80px; }
@@ -542,9 +635,9 @@
       .about-img-wrap { max-width: 380px; aspect-ratio: 1; margin: 0 auto; }
       .spec-intro { grid-template-columns: 1fr; gap: 24px; }
       .spec-grid { grid-template-columns: repeat(2, 1fr); }
-      .projects-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
-      .proj-card.featured { min-height: 380px; }
-      .proj-card.p2, .proj-card.p3 { min-height: 240px; }
+      .project-showcase { grid-template-columns: 1fr; }
+      .project-panel { padding: 24px; }
+      .project-carousel { aspect-ratio: 4 / 3; }
       .contact-inner { grid-template-columns: 1fr; }
       .svc-row { grid-template-columns: 40px 1fr; }
       .svc-tags { display: none; }
@@ -558,6 +651,11 @@
       .hero { padding: 100px 24px 48px; }
       .hero-title { width: min(250px, 64vw); }
       .hero-name { font-size: 0.92rem; letter-spacing: 0.14em; }
+      .project-showcase { margin-top: 34px; }
+      .carousel-control { width: 38px; height: 38px; }
+      .carousel-control.prev { left: 12px; }
+      .carousel-control.next { right: 12px; }
+      .carousel-status { left: 14px; bottom: 12px; }
       .form-row { grid-template-columns: 1fr; }
       .spec-grid { grid-template-columns: repeat(2, 1fr); }
       .hero-stats { gap: 20px; }
@@ -869,69 +967,48 @@
   <!-- ── PROJECTS ── -->
   <div class="section" id="proyectos">
     <div class="eyebrow reveal">Portafolio</div>
-    <h2 class="section-title reveal d1">Obras que hablan<br>por sí solas</h2>
-    <p class="section-sub reveal d2">Una selección de proyectos destacados realizados en Tandil.</p>
+    <h2 class="section-title reveal d1">Uno de mis<br>proyectos</h2>
+    <p class="section-sub reveal d2">Local comercial en avenida Lunghi.</p>
 
-    <div class="projects-grid">
-      <div class="proj-card featured reveal">
-        <div class="proj-bg proj-bg-1">
-          <svg width="200" height="220" viewBox="0 0 200 220" fill="none" stroke="oklch(18% 0.012 75)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-            <polygon points="100,18 178,75 178,210 22,210 22,75"/>
-            <line x1="100" y1="18" x2="100" y2="210"/>
-            <rect x="62" y="138" width="76" height="72"/>
-            <line x1="100" y1="138" x2="100" y2="210"/>
-            <rect x="32" y="90" width="44" height="40"/>
-            <rect x="124" y="90" width="44" height="40"/>
-            <line x1="22" y1="75" x2="100" y2="18"/>
-            <line x1="100" y1="18" x2="178" y2="75"/>
-          </svg>
+    <div class="project-showcase reveal d3" data-carousel>
+      <div class="project-carousel" aria-label="Proceso de obra del local comercial">
+        <div class="carousel-track">
+          <figure class="carousel-slide"><img src="lunghi-01.jpeg" alt="Excavación inicial de fundaciones para local comercial" loading="lazy"></figure>
+          <figure class="carousel-slide"><img src="lunghi-02.jpeg" alt="Armado de hierro en zanjas de fundación" loading="lazy"></figure>
+          <figure class="carousel-slide"><img src="lunghi-03.jpeg" alt="Mampostería de arranque con aislación en fundaciones" loading="lazy"></figure>
+          <figure class="carousel-slide"><img src="lunghi-04.jpeg" alt="Levantamiento de paredes de ladrillo del local" loading="lazy"></figure>
+          <figure class="carousel-slide"><img src="lunghi-05.jpeg" alt="Estructura superior y encadenados en proceso" loading="lazy"></figure>
+          <figure class="carousel-slide"><img src="lunghi-06.jpeg" alt="Detalle de armadura de hierro previo al hormigonado" loading="lazy"></figure>
+          <figure class="carousel-slide"><img src="lunghi-07.jpeg" alt="Colocación de viguetas y losas sobre el local comercial" loading="lazy"></figure>
+          <figure class="carousel-slide"><img src="lunghi-08.jpeg" alt="Estructura interior de hormigón y apuntalamiento" loading="lazy"></figure>
+          <figure class="carousel-slide"><img src="lunghi-09.jpeg" alt="Revoques interiores y cierre de muros" loading="lazy"></figure>
+          <figure class="carousel-slide"><img src="lunghi-10.jpeg" alt="Frente de obra con cubierta y cerramiento provisorio" loading="lazy"></figure>
+          <figure class="carousel-slide"><img src="lunghi-11.jpeg" alt="Revoque exterior y vano comercial en ejecución" loading="lazy"></figure>
+          <figure class="carousel-slide"><img src="lunghi-12.jpeg" alt="Fachada revocada con carpintería colocada" loading="lazy"></figure>
+          <figure class="carousel-slide"><img src="lunghi-13.jpeg" alt="Local comercial pintado con frente vidriado" loading="lazy"></figure>
+          <figure class="carousel-slide"><img src="lunghi-14.jpeg" alt="Local comercial terminado sobre avenida Lunghi" loading="lazy"></figure>
         </div>
-        <div class="proj-overlay">
-          <span class="proj-tag">Residencial</span>
-          <div class="proj-name">Casa particular Zona Norte</div>
-          <div class="proj-loc">Tandil · 280 m² · 2024</div>
-        </div>
+        <button class="carousel-control prev" type="button" aria-label="Foto anterior">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button class="carousel-control next" type="button" aria-label="Foto siguiente">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+        <div class="carousel-status"><span class="carousel-current">01</span><span>/</span><span>14</span></div>
       </div>
 
-      <div class="proj-card p2 reveal d2">
-        <div class="proj-bg proj-bg-2">
-          <svg width="120" height="150" viewBox="0 0 120 150" fill="none" stroke="oklch(18% 0.012 75)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="15" y="25" width="90" height="118"/>
-            <line x1="15" y1="60" x2="105" y2="60"/>
-            <line x1="15" y1="95" x2="105" y2="95"/>
-            <rect x="27" y="35" width="20" height="16"/>
-            <rect x="73" y="35" width="20" height="16"/>
-            <rect x="27" y="68" width="20" height="16"/>
-            <rect x="73" y="68" width="20" height="16"/>
-            <rect x="40" y="108" width="40" height="35"/>
-          </svg>
+      <aside class="project-panel">
+        <div>
+          <h3>Local comercial en avenida Lunghi</h3>
+          <p>Proceso completo de obra: fundaciones, mampostería, estructura, cerramientos, revoques, frente vidriado y terminación final.</p>
         </div>
-        <div class="proj-overlay">
-          <span class="proj-tag">Comercial</span>
-          <div class="proj-name">Local comercial</div>
-          <div class="proj-loc">Tandil · 120 m² · 2024</div>
+        <div class="project-meta">
+          <span>Tipo <strong>Comercial</strong></span>
+          <span>Ubicación <strong>Tandil</strong></span>
+          <span>Registro <strong>14 etapas</strong></span>
         </div>
-      </div>
-
-      <div class="proj-card p3 reveal d3">
-        <div class="proj-bg proj-bg-3">
-          <svg width="160" height="110" viewBox="0 0 160 110" fill="none" stroke="oklch(18% 0.012 75)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M10,100 L10,45 L80,18 L150,45 L150,100 Z"/>
-            <line x1="10" y1="100" x2="150" y2="100"/>
-            <line x1="80" y1="18" x2="80" y2="100"/>
-            <line x1="10" y1="45" x2="150" y2="45"/>
-            <rect x="50" y="70" width="30" height="30"/>
-            <rect x="100" y="55" width="35" height="16"/>
-            <line x1="28" y1="100" x2="28" y2="55"/>
-            <line x1="132" y1="100" x2="132" y2="55"/>
-          </svg>
-        </div>
-        <div class="proj-overlay">
-          <span class="proj-tag">Industrial</span>
-          <div class="proj-name">Galpón logístico</div>
-          <div class="proj-loc">Tandil · 600 m² · 2023</div>
-        </div>
-      </div>
+        <div class="carousel-dots" aria-label="Elegir foto del carrusel"></div>
+      </aside>
     </div>
   </div>
 
@@ -1041,6 +1118,45 @@
     window.addEventListener('scroll', () => {
       nav.style.boxShadow = scrollY > 50 ? '0 8px 48px oklch(18% 0.012 75 / 0.16)' : '';
     }, { passive: true });
+
+    // Project carousel
+    document.querySelectorAll('[data-carousel]').forEach(carousel => {
+      const track = carousel.querySelector('.carousel-track');
+      const slides = [...carousel.querySelectorAll('.carousel-slide')];
+      const prev = carousel.querySelector('.carousel-control.prev');
+      const next = carousel.querySelector('.carousel-control.next');
+      const current = carousel.querySelector('.carousel-current');
+      const dotsWrap = carousel.querySelector('.carousel-dots');
+      let index = 0;
+
+      slides.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'carousel-dot';
+        dot.setAttribute('aria-label', `Ver etapa ${i + 1}`);
+        dot.addEventListener('click', () => goTo(i));
+        dotsWrap.appendChild(dot);
+      });
+
+      const dots = [...dotsWrap.querySelectorAll('.carousel-dot')];
+
+      function goTo(nextIndex) {
+        index = (nextIndex + slides.length) % slides.length;
+        track.style.transform = `translateX(-${index * 100}%)`;
+        current.textContent = String(index + 1).padStart(2, '0');
+        dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+      }
+
+      prev.addEventListener('click', () => goTo(index - 1));
+      next.addEventListener('click', () => goTo(index + 1));
+      carousel.addEventListener('keydown', event => {
+        if (event.key === 'ArrowLeft') goTo(index - 1);
+        if (event.key === 'ArrowRight') goTo(index + 1);
+      });
+
+      carousel.tabIndex = 0;
+      goTo(0);
+    });
 
     // Form → WhatsApp
     document.getElementById('contact-form').addEventListener('submit', e => {
